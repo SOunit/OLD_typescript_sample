@@ -1,6 +1,10 @@
 import faker from 'faker';
 
-class User {
+export const red = 'red';
+// in TypeScript, default export is not recommended
+// export default 'red';
+
+export class User {
   name: string;
   location: {
     lat: number;

@@ -1,4 +1,7 @@
+import { User } from './User';
+
 // parcel index.html
 // parcel change index.ts to index.js
-console.log('hi there');
-console.log('hi there');
+
+const user = new User();
+console.log(user);
