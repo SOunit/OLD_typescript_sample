@@ -1,14 +1,12 @@
-export class Sorter {
-  constructor(public collection: number[]) {}
-  sort(): void {
-    const { length } = this.collection;
+import { NumbersCollection } from './NumbersCollection';
 
-    for (let i = 0; i < length; i++) {
-      for (let j = 0; j < length - i - 1; j++) {
-        if (this.collection[j] > this.collection[j + 1]) {
-          const leftHand = this.collection[j];
-          this.collection[j] = this.collection[j + 1];
-          this.collection[j + 1] = leftHand;
+export class Sorter {
+  constructor(public collection: NumbersCollection) {}
+  sort(): void {
+    for (let i = 0; i < this.collection.length; i++) {
+      for (let j = 0; j < this.collection.length - i - 1; j++) {
+        if (this.collection.compare(j, j + 1)) {
+          this.collection.swap(j, j + 1);
         }
       }
     }
