@@ -1,4 +1,5 @@
 import { CsvFileReader } from './CsvFileReader';
+import { MatchResult } from './MatchResult';
 
 // Todo
 // 1. load csv data
@@ -11,19 +12,12 @@ reader.read();
 
 // 3. analyze
 
-// enum - enumeration
-enum MatfchResult {
-  HomeWin = 'H',
-  AwayWin = 'A',
-  Draw = 'D',
-}
-
 let manUnitedWins = 0;
 
 for (let match of reader.data) {
-  if (match[1] === 'Man United' && match[5] === MatfchResult.HomeWin) {
+  if (match[1] === 'Man United' && match[5] === MatchResult.HomeWin) {
     manUnitedWins++;
-  } else if (match[2] === 'Man United' && match[5] === MatfchResult.AwayWin) {
+  } else if (match[2] === 'Man United' && match[5] === MatchResult.AwayWin) {
     manUnitedWins++;
   }
 }
