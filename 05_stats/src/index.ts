@@ -1,17 +1,11 @@
-import { CsvFileReader } from './CsvFileReader';
+import { MatchReader } from './MatchReader';
 import { MatchResult } from './MatchResult';
 
-// Todo
-// 1. load csv data
-// 2. parse
-// 3. analyze
-// 4. report
-
-const reader = new CsvFileReader('football.csv');
+// load data
+const reader = new MatchReader('football.csv');
 reader.read();
 
-// 3. analyze
-
+// analyze data
 let manUnitedWins = 0;
 
 for (let match of reader.data) {
@@ -22,5 +16,5 @@ for (let match of reader.data) {
   }
 }
 
-// 4. report
+// report data
 console.log(`Man United won ${manUnitedWins} games`);
