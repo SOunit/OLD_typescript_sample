@@ -1,5 +1,4 @@
-import fs from 'fs';
-console.log('hi');
+import { CsvFileReader } from './CsvFileReader';
 
 // Todo
 // 1. load csv data
@@ -7,29 +6,24 @@ console.log('hi');
 // 3. analyze
 // 4. report
 
-// 1. load csv data
-// 2. parse flow
-// readFileSync   : one big string
-// split('¥n')    : array of csv data
-// split(',')     : array of csv data columns
-const matches = fs
-  .readFileSync('football.csv', {
-    encoding: 'utf-8',
-  })
-  .split('\n')
-  .map((row: string): string[] => {
-    return row.split(',');
-  });
-
-console.log(matches);
+const reader = new CsvFileReader('football.csv');
+reader.read();
 
 // 3. analyze
+
+// enum - enumeration
+enum MatfchResult {
+  HomeWin = 'H',
+  AwayWin = 'A',
+  Draw = 'D',
+}
+
 let manUnitedWins = 0;
 
-for (let match of matches) {
-  if (match[1] === 'Man United' && match[5] === 'H') {
+for (let match of reader.data) {
+  if (match[1] === 'Man United' && match[5] === MatfchResult.HomeWin) {
     manUnitedWins++;
-  } else if (match[2] === 'Man United' && match[5] === 'A') {
+  } else if (match[2] === 'Man United' && match[5] === MatfchResult.AwayWin) {
     manUnitedWins++;
   }
 }
