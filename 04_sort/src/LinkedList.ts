@@ -1,10 +1,12 @@
+import { Sorter } from './Sorter';
+
 class Node {
   next: Node | null = null;
 
   constructor(public data: number) {}
 }
 
-export class LinkedList {
+export class LinkedList extends Sorter {
   head: Node | null = null;
 
   add(data: number): void {
@@ -80,10 +82,12 @@ export class LinkedList {
     }
 
     let node: Node | null = this.head;
+
+    const numbersArray: number[] = [];
     while (node) {
-      console.log(node.data);
+      numbersArray.push(node.data);
       node = node.next;
     }
+    console.log(numbersArray);
   }
 }
-
