@@ -53,3 +53,30 @@ printAnything(['a', 'b', 'c']);
 // same with putting type to return value of method
 // to catch error
 printAnything<string>(['a', 'b', 'c']);
+
+// Generic Constraints
+
+class Car {
+  print() {
+    console.log('I am a car');
+  }
+}
+
+class House {
+  print() {
+    console.log('I am a house');
+  }
+}
+
+interface Printable {
+  print(): void;
+}
+
+function print<T extends Printable>(arr: T[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].print();
+  }
+}
+
+print<House>([new House(), new House()]);
+print<Car>([new Car(), new Car()]);
