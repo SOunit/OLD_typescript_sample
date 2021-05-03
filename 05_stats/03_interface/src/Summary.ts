@@ -1,3 +1,4 @@
+import { match } from 'assert/strict';
 import { MatchData } from './MatchData';
 
 export interface Analyzer {
@@ -9,5 +10,10 @@ export interface OutputTarget {
 }
 
 export class Summary {
-  constructor(public analyzer: Analyzer, outputTarget: OutputTarget) {}
+  constructor(public analyzer: Analyzer, public outputTarget: OutputTarget) {}
+
+  buildAndPrintReport(matches: MatchData[]): void {
+    const output = this.analyzer.run(matches);
+    this.outputTarget.print(output);
+  }
 }
