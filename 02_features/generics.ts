@@ -23,3 +23,33 @@ class ArrayOfAnything<T> {
 }
 
 new ArrayOfAnything<string>(['a', 'b', 'c']);
+
+// type inference
+const arr = new ArrayOfAnything(['a', 'b', 'c']);
+
+function printString(arr: string[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+function printNumber(arr: number[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+function printAnything<T>(arr: T[]): void {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+  }
+}
+
+// without generics
+// still type script can tell type but...
+printAnything(['a', 'b', 'c']);
+
+// putting generics is better to catch error
+// same with putting type to return value of method
+// to catch error
+printAnything<string>(['a', 'b', 'c']);
