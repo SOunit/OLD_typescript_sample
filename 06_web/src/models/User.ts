@@ -3,7 +3,11 @@ interface UserProps {
   age?: number;
 }
 
+type Callback = () => {};
+
 export class User {
+  events: { [key: string]: Callback[] } = {};
+
   constructor(private data: UserProps) {}
 
   get(propName: string): string | number {
@@ -16,4 +20,6 @@ export class User {
     // if prop exists, override the prop
     Object.assign(this.data, update);
   }
+
+  on(eventName: string, callback: Callback) {}
 }
