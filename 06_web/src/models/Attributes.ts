@@ -23,6 +23,3 @@ export class Attributes<T> {
     Object.assign(this.data, update);
   }
 }
-
-const attrs = new Attributes({ id: 1, name: 'Jack' });
-attrs.get('id');
