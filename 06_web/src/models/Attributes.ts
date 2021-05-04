@@ -12,9 +12,9 @@ export class Attributes<T> {
 
   // for return value
   // T[K] = UserProps[id] = number
-  get<K extends keyof T>(key: K): T[K] {
+  get = <K extends keyof T>(key: K): T[K] => {
     return this.data[key];
-  }
+  };
 
   set(update: T): void {
     // Object.assign
