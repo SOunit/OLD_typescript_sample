@@ -1,6 +1,17 @@
 export class Attributes<T> {
   constructor(private data: T) {}
 
+  // 1. receive key as key
+  // 2. return T[K] as value
+  // 3. set generic to limit argument type
+  // 4. set generic key to limit argument type to key
+
+  // for argument limit
+  // T = UserProps = {id:number, name:string, age:number}
+  // K = keyof T = id, name, age
+
+  // for return value
+  // T[K] = UserProps[id] = number
   get<K extends keyof T>(key: K): T[K] {
     return this.data[key];
   }
@@ -12,3 +23,6 @@ export class Attributes<T> {
     Object.assign(this.data, update);
   }
 }
+
+const attrs = new Attributes({ id: 1, name: 'Jack' });
+attrs.get('id');
