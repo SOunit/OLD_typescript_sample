@@ -48,6 +48,8 @@ export abstract class View<T extends Model<K>, K> {
     }
   }
 
+  onRender(): void {}
+
   render(): void {
     // clear all html
     this.parent.innerHTML = '';
@@ -58,7 +60,12 @@ export abstract class View<T extends Model<K>, K> {
     templateElement.innerHTML = this.template();
     // add events
     this.bindEvents(templateElement.content);
+
+    // setup regions
     this.mapRegions(templateElement.content);
+
+    // helper method for rendering nested views
+    this.onRender();
 
     // add html element to dom
     this.parent.append(templateElement.content);
