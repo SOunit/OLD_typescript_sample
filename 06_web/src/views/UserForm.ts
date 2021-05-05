@@ -3,20 +3,15 @@ import { User } from '../models/User';
 export class UserForm {
   constructor(public parent: Element, public model: User) {}
 
-  onButtonClick(): void {
-    console.log('hi there');
-  }
-
   // old way to handle event before react, vue, anglar...
   eventsMap(): { [key: string]: () => void } {
     return {
-      'click:button': this.onButtonClick,
-      'mouseenter:h1': this.onHeaderHover,
+      'click:.set-age': this.onSetAgeClick,
     };
   }
 
-  onHeaderHover(): void {
-    console.log('h1 was hover over');
+  onSetAgeClick(): void {
+    console.log('on set age click');
   }
 
   template(): string {
@@ -27,6 +22,7 @@ export class UserForm {
         <div>User age: ${this.model.get('age')}</div>
         <input />
         <button>Click Me</button>
+        <button class="set-age">Set Random Age</button>
       </div>
       `;
   }
