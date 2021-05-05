@@ -22,4 +22,8 @@ export class Attributes<T> {
     // if prop exists, override the prop
     Object.assign(this.data, update);
   }
+
+  getAll = (): T => {
+    return this.data;
+  };
 }
