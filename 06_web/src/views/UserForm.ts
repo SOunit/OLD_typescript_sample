@@ -9,7 +9,12 @@ export class UserForm {
   eventsMap(): { [key: string]: () => void } {
     return {
       'click:button': this.onButtonClick,
+      'mouseenter:h1': this.onHeaderHover,
     };
+  }
+
+  onHeaderHover(): void {
+    console.log('h1 was hover over');
   }
 
   template(): string {
@@ -22,11 +27,26 @@ export class UserForm {
       `;
   }
 
+  bindEvents(fragment: DocumentFragment): void {
+    const eventsMap = this.eventsMap();
+
+    for (let eventKey in eventsMap) {
+      // click:button -> click, button
+      const [eventName, selector] = eventKey.split(':');
+
+      fragment.querySelectorAll(selector).forEach((element) => {
+        element.addEventListener(eventName, eventsMap[eventKey]);
+      });
+    }
+  }
+
   render(): void {
     // create html element
     const templateElement = document.createElement('template');
     // convert string to html element
     templateElement.innerHTML = this.template();
+    // add events
+    this.bindEvents(templateElement.content);
 
     // add html element to dom
     this.parent.append(templateElement.content);
