@@ -1,7 +1,15 @@
 import { User } from '../models/User';
 
 export class UserForm {
-  constructor(public parent: Element, public model: User) {}
+  constructor(public parent: Element, public model: User) {
+    this.bindModel();
+  }
+
+  bindModel(): void {
+    this.model.on('change', () => {
+      this.render();
+    });
+  }
 
   // old way to handle event before react, vue, anglar...
   eventsMap(): { [key: string]: () => void } {
@@ -41,6 +49,9 @@ export class UserForm {
   }
 
   render(): void {
+    // clear all html
+    this.parent.innerHTML = '';
+
     // create html element
     const templateElement = document.createElement('template');
     // convert string to html element
